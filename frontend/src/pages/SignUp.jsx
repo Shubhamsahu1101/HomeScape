@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 
 const SignUp = () => {
   const [formData, setFormData] = React.useState({});
   const [loading, setLoading] = React.useState(false);
-  
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -31,7 +32,10 @@ const SignUp = () => {
       if(data.message) {
         toast.error(data.message);
       }
-      else toast.success('Account created successfully');
+      else {
+        toast.success('Account created successfully');
+        navigate('/login');
+      }
 
     } catch (error) {
       console.log(error.message);
