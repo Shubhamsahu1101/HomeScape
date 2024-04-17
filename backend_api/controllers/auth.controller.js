@@ -23,10 +23,10 @@ export const signup = async (req, res) => {
         }
 
         const hashedPassword = await bcryptjs.hash(password, 10);
-        const newUser = new User({ username, email, password: hashedPassword });
+        const newUser = new User({ username, email, password: hashedPassword, avatar:`https://avatar.iran.liara.run/username?username=${username}` });
         
         await newUser.save();
-        res.status(201).json({});
+        res.status(201).json(newUser);
 
     } catch (error) {
         console.log(error.message);
@@ -59,7 +59,7 @@ export const login = async (req, res) => {
         // console.log("User logged in");
         
         const token = jwt.sign({ id: userExists._id }, process.env.JWT_SECRET);
-        return res.cookie('nextestate_token', token, { httpOnly: true }).status(200).json({});
+        return res.cookie('nextestate_token', token, { httpOnly: true }).status(200).json(userExists);
 
     } catch (error) {
         console.log(error.message);

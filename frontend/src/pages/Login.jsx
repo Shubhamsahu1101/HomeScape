@@ -1,10 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import toast from 'react-hot-toast'
+import { useDispatch } from 'react-redux'
+import { userLoggedIn } from '../redux/user/userSlice'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const [formData, setFormData] = React.useState({});
   const [loading, setLoading] = React.useState(false);
+  const dispatchEvent = useDispatch();
+  const navigate = useNavigate();
   
   const handleChange = (e) => {
     setFormData({
@@ -27,11 +32,16 @@ const Login = () => {
       });
 
       const data = await res.json();
+      console.log(data);
       
       if(data.message) {
         toast.error(data.message);
       }
-      else toast.success('Logged in successfully');
+      else {
+        toast.success('Logged in successfully');
+        dispatchEvent(userLoggedIn(data));
+        navigate('/');
+      }
 
     } catch (error) {
       console.log(error.message);
