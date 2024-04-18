@@ -25,6 +25,8 @@ export const signup = async (req, res) => {
         const hashedPassword = await bcryptjs.hash(password, 10);
         const newUser = new User({ username, email, password: hashedPassword, avatar:`https://avatar.iran.liara.run/username?username=${username}` });
         
+        // console.log("User signed up", newUser)
+
         await newUser.save();
         res.status(201).json(newUser);
 
@@ -33,6 +35,7 @@ export const signup = async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error' });
     } 
 }
+
 
 export const login = async (req, res) => {
     try {
@@ -56,7 +59,7 @@ export const login = async (req, res) => {
             return res.status(400).json({message: 'Incorrect password'});
         }
 
-        // console.log("User logged in");
+        // console.log("User logged in", userExists);
         
         const token = jwt.sign({ id: userExists._id }, process.env.JWT_SECRET);
         return res.cookie('nextestate_token', token, { httpOnly: true }).status(200).json(userExists);
@@ -65,4 +68,15 @@ export const login = async (req, res) => {
         console.log(error.message);
         res.status(500).json({ message: 'Internal Server Error' });
     } 
+}
+
+
+export const logout = (req, res) => {
+    try {
+        res.clearCookie('nextestate_token');
+        res.status(200).json({});
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
 }

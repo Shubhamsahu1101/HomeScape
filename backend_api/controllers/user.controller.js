@@ -2,12 +2,6 @@ import bcryptjs from 'bcryptjs';
 import User from '../models/user.model.js';
 
 
-export const test = (req, res) => {
-    res.json({
-        message: 'User route is working'
-    });
-}
-
 export const updateUser = async (req, res) => {
     if(req.user.id !== req.params.id) {
         return res.status(403).json({ message: 'Forbidden' });
@@ -41,15 +35,29 @@ export const updateUser = async (req, res) => {
                     avatar: req.body.avatar
                 }
             },
-            {
-                new: true,
-            }
+            { new: true }
         );
 
         const { password, ...rest } = updatedUser._doc;
 
         res.status(200).json(rest);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        console.log(error.message);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+}
+
+
+export const deleteUser = async (req, res) => {
+    if(req.user.id !== req.params.id) {
+        return res.status(403).json({ message: 'Forbidden' });
+    }
+    try {
+        await User.findByIdAndDelete(req.params.id);
+        res.clearCookie('nextestate_token');
+        res.status(200).json({});
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ message: 'Internal Server Error' });
     }
 }
