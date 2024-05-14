@@ -8,6 +8,7 @@ import Login from './pages/Login'
 import Header from './components/Header'
 import { Toaster } from 'react-hot-toast'
 import PrivateRoute from './components/PrivateRoute'
+import CreateListing from './pages/CreateListing'
 
 const App = () => {
   return (
@@ -17,13 +18,14 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
         
         <Route element={<PrivateRoute />} >
           <Route path="/profile" element={<Profile />} />
+          <Route path="/create-listing" element={<CreateListing />} />
         </Route>
 
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   )

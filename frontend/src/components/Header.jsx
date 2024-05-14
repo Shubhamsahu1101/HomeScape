@@ -7,7 +7,7 @@ const Header = () => {
     const {currentUser} = useSelector((state) => state.user);
     return (
         <header className='bg-slate-200 shadow-md'>
-            <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
+            <div className='flex justify-between items-center max-w-full mx-auto p-3 pl-6'>
                 <Link to='/'>
                     <h1 className=' font-bold text-sm sm:text-3xl flex flex-wrap'>
                         <span className='text-slate-500'>Next</span>
@@ -38,12 +38,12 @@ const Header = () => {
                     <Link to='/profile'>
                         {currentUser ? (
                             <img
-                                className='rounded-full h-9 w-9 object-cover'
+                                className='rounded-full h-9 w-9 object-cover pr-3'
                                 src={currentUser.avatar}
                                 alt='profile'
                             />
                         ) : (
-                            <li className=' text-slate-700 hover:underline'> Sign in</li>
+                            <li className=' text-slate-700 text-xl hover:underline pr-3'> Sign in</li>
                         )}
                     </Link>
                 </ul>
