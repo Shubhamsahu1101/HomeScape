@@ -10,6 +10,6 @@ router.post('/update/:id', verifyToken, updateListing);
 
 router.delete('/delete/:id', verifyToken, deleteListing);
 
-router.get('/listings/:id', verifyToken, getUserListings);
+router.get('/user-listings/:id', verifyToken, getUserListings);
 
 export default router;
