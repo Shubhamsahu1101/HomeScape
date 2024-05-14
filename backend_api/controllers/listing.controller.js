@@ -70,3 +70,17 @@ export const getUserListings = async (req, res) => {
         return res.status(500).json({ message: 'Internal server error' });
     }
 }
+
+
+export const getListing = async (req, res) => {
+    try {
+        const listing = await Listing.findById(req.params.id);
+        if (!listing) {
+            return res.status(404).json({ message: 'Listing not found!' });
+        }
+        res.status(200).json(listing);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+};

@@ -3,9 +3,10 @@ import toast from 'react-hot-toast'
 import { app } from '../../firebase';
 import { getDownloadURL, ref, getStorage, uploadBytesResumable } from 'firebase/storage';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const CreateListing = () => {
+  const params = useParams();
   const [files, setFiles] = React.useState([]);
   const [formData, setFormData] = React.useState({
     imageUrls: [],
@@ -26,6 +27,22 @@ const CreateListing = () => {
   const navigate = useNavigate();
 
   console.log(formData);
+
+  React.useEffect(() => {
+    const fetchListing = async () => {
+      const listingId = params.listingId;
+      const res = await fetch(`/api/listing/get/${listingId}`);
+      const data = await res.json();
+      if (data.success === false) {
+        console.log(data.message);
+        return;
+      }
+      setFormData(data);
+    };
+
+    fetchListing();
+  }, []);
+
 
   const handleChange = (e) => {
 
@@ -63,8 +80,8 @@ const CreateListing = () => {
       }
 
       setLoading(true);
-
-      const res = await fetch('/api/listing/create', {
+      const listingId = params.listingId;
+      const res = await fetch(`/api/listing/update/${listingId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -277,7 +294,7 @@ const CreateListing = () => {
               ))}
           </div>
           <button disabled={uploading} className='p-3 bg-green-700 text-white rounded-lg hover:opacity-95 disabled:opacity-80'>
-            Create Listing
+            Update Listing
           </button>
         </div>
       </form>

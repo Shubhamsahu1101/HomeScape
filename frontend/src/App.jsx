@@ -10,6 +10,8 @@ import { Toaster } from 'react-hot-toast'
 import PrivateRoute from './components/PrivateRoute'
 import CreateListing from './pages/CreateListing'
 import MyListings from './pages/MyListings'
+import UpdateListing from './pages/UpdateListing'
+import Listing from './pages/Listing'
 
 const App = () => {
   return (
@@ -26,7 +28,10 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/create-listing" element={<CreateListing />} />
           <Route path="/my-listings" element={<MyListings />} />
+          <Route path="/update-listing/:listingId" element={<UpdateListing />} />
         </Route>
+
+        <Route path="/listing/:listingId" element={<Listing />} />
 
       </Routes>
     </div>
