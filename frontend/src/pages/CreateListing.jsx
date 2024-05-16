@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const CreateListing = () => {
+  const { currentUser } = useSelector((state) => state.user);
   const [files, setFiles] = React.useState([]);
   const [formData, setFormData] = React.useState({
     imageUrls: [],
@@ -19,10 +20,10 @@ const CreateListing = () => {
     offer: false,
     parking: false,
     furnished: false,
+    contact: currentUser.email
   });
   const [uploading, setUploading] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
-  const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   console.log(formData);
@@ -107,15 +108,18 @@ const CreateListing = () => {
         success: 'Image uploaded',
         error: 'An error occurred',
       }).then((url) => {
-        setFormData({
-          ...formData,
-          imageUrls: formData.imageUrls.concat(url),
-        });
+        promises[i] = url;
       }).catch((error) => {
         console.log(error);
         toast.error('An error occurred (Max 2mb per Image)');
       }).finally(() => {
-        if (i == promises.length - 1) setUploading(false);
+        if (i == promises.length - 1){
+          setFormData({
+            ...formData,
+            imageUrls: [...formData.imageUrls, ...promises],
+          });
+          setUploading(false);
+        }
       });
     }
   }
@@ -238,7 +242,7 @@ const CreateListing = () => {
               />
               <div className='flex flex-col items-center'>
                 <p>Price</p>
-                {formData.rent && (
+                {formData.type === 'rent' && (
                   <span className='text-xs'>Rs/month</span>
                 )}
               </div>
@@ -276,8 +280,8 @@ const CreateListing = () => {
                 </div>
               ))}
           </div>
-          <button disabled={uploading} className='p-3 bg-green-700 text-white rounded-lg hover:opacity-95 disabled:opacity-80'>
-            Create Listing
+          <button disabled={uploading || loading} className='p-3 bg-green-700 text-white rounded-lg hover:opacity-95 disabled:opacity-80'>
+            {loading? 'Creating...' : 'Create Listing'}
           </button>
         </div>
       </form>

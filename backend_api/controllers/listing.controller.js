@@ -84,3 +84,44 @@ export const getListing = async (req, res) => {
         return res.status(500).json({ message: 'Internal server error' });
     }
 };
+
+
+export const getAllListings = async (req, res) => {
+    try {
+        const limit = parseInt(req.query.limit) || 10;
+        const startIndex = parseInt(req.query.startIndex) || 0;
+
+        let parking = req.query.parking;
+        if (parking === 'false' || parking === undefined) {
+            parking = { $in: [false, true] };
+        }
+
+        let furnished = req.query.furnished;
+        if (furnished === 'false' || furnished === undefined) {
+            furnished = { $in: [false, true] };
+        }
+
+        let type = req.query.type;
+        if (type === 'all' || type === undefined) {
+            type = { $in: ['rent', 'sell'] };
+        }
+
+        const searchTerm = req.query.searchTerm || '';
+
+        const sortBy = req.query.sortBy || 'createdAt';
+
+        const order = req.query.order || 'desc';
+
+        const listings = await Listing.find({
+            title: { $regex: searchTerm, $options: 'i' },
+            type: type,
+            parking: parking,
+            furnished: furnished,
+        }).sort({ [sortBy]: order }).limit(limit).skip(startIndex);
+
+        res.status(200).json(listings);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+};

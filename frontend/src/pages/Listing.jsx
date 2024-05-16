@@ -8,6 +8,7 @@ import {
     FaBath,
     FaBed,
     FaChair,
+    FaEnvelope,
     FaMapMarkerAlt,
     FaParking,
     FaTag,
@@ -63,14 +64,6 @@ export default function Listing() {
                     <p className='text-2xl font-semibold'>
                         {listing.title}
                     </p>
-                    <p className='flex items-center mt-3 gap-2 text-slate-600  text-lg'>
-                        <FaTag className='text-green-500' />
-                        {listing.price} Rs {listing.type === 'rent' && ' / month'}
-                    </p>
-                    <p className='flex items-center mt-3 gap-2 text-slate-600  text-lg'>
-                        <FaMapMarkerAlt className='text-blue-500' />
-                        {listing.address}
-                    </p>
 
 
                     <div className='flex gap-4 mt-3'>
@@ -80,7 +73,19 @@ export default function Listing() {
                     </div>
 
 
-                    <ul className='text-green-900 font-semibold text-md mt-3 flex flex-wrap items-center gap-4 sm:gap-6'>
+                    <p className='flex items-center mt-3 gap-2 text-slate-600  text-lg'>
+                        <FaTag className='text-green-500' />
+                        {listing.price} Rs {listing.type === 'rent' && ' / month'}
+                    </p>
+
+
+                    <p className='flex items-center mt-3 gap-2 text-slate-600  text-lg'>
+                        <FaMapMarkerAlt className='text-blue-500' />
+                        {listing.address}
+                    </p>
+
+
+                    <ul className='text-green-900 font-semibold text-lg mt-3 flex flex-wrap items-center gap-4 sm:gap-6'>
                         <li className='flex items-center gap-1 whitespace-nowrap '>
                             <FaBed className='text-lg' />
                             {listing.bedrooms > 1
@@ -107,6 +112,12 @@ export default function Listing() {
                     <p className='text-slate-800 mt-3'>
                         <span className='font-semibold text-black'>Description - </span>
                         {listing.description}
+                    </p>
+
+
+                    <p className='flex items-center mt-3 gap-2 text-slate-600  text-lg'>
+                        <FaEnvelope className='text-blue-500' />
+                        {listing.contact}
                     </p>
 
                 </div>
