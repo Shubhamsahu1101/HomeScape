@@ -30,10 +30,10 @@ const CreateListing = () => {
 
   const handleChange = (e) => {
 
-    if (e.target.id === 'sell') {
+    if (e.target.id === 'sale') {
       setFormData({
         ...formData,
-        type: 'sell',
+        type: 'sale',
       });
     }
     else if (e.target.id === 'rent') {
@@ -195,7 +195,7 @@ const CreateListing = () => {
 
 
           <div className='flex gap-2'>
-            <input type='checkbox' id='sell' className='w-5' onChange={handleChange} checked={formData.type == 'sell'} /> <span>Sell</span>
+            <input type='checkbox' id='sale' className='w-5' onChange={handleChange} checked={formData.type == 'sale'} /> <span>Sale</span>
             <input type='checkbox' id='rent' className='w-5 ml-4' onChange={handleChange} checked={formData.type == 'rent'} /> <span>Rent</span>
             <input type='checkbox' id='parking' className='w-5 ml-4' onChange={handleChange} checked={formData.parking} /> <span>Parking Spot</span>
             <input type='checkbox' id='furnished' className='w-5 ml-4' onChange={handleChange} checked={formData.furnished} /> <span>Furnished</span>

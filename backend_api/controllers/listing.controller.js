@@ -103,7 +103,7 @@ export const getAllListings = async (req, res) => {
 
         let type = req.query.type;
         if (type === 'all' || type === undefined) {
-            type = { $in: ['rent', 'sell'] };
+            type = { $in: ['rent', 'sale'] };
         }
 
         const searchTerm = req.query.searchTerm || '';
