@@ -280,7 +280,7 @@ const CreateListing = () => {
                 </div>
               ))}
           </div>
-          <button disabled={uploading || loading} className='p-3 bg-green-700 text-white rounded-lg hover:opacity-95 disabled:opacity-80'>
+          <button disabled={uploading || loading} className='p-3 bg-green-700 text-xl text-white rounded-lg hover:opacity-95 disabled:opacity-80'>
             {loading? 'Creating...' : 'Create Listing'}
           </button>
         </div>

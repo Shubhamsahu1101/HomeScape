@@ -57,7 +57,7 @@ const Login = () => {
       <form onSubmit={handleSubmit} className='flex flex-col gap-4 mt-5'>
         <input type='email' onChange={handleChange} placeholder='email' id='email' className='border p-3 rounded-lg' />
         <input type='password' onChange={handleChange} placeholder='password' id='password' className='border p-3 rounded-lg' />
-        <button disabled={loading} type='submit' className='bg-slate-700 text-white p-3 rounded-lg hover:opacity-95'>
+        <button disabled={loading} type='submit' className='bg-stone-700 text-white p-3 rounded-lg hover:opacity-95'>
           {loading ? 'Loading...' : 'LOGIN'}
         </button>
       </form>

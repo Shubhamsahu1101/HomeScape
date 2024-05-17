@@ -52,7 +52,7 @@ const SignUp = () => {
         <input type='text' onChange={handleChange} placeholder='username' id='username' className='border p-3 rounded-lg' />
         <input type='email' onChange={handleChange} placeholder='email' id='email' className='border p-3 rounded-lg' />
         <input type='password' onChange={handleChange} placeholder='password' id='password' className='border p-3 rounded-lg' />
-        <button type='submit' disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg hover:opacity-95'>
+        <button type='submit' disabled={loading} className='bg-stone-700 text-white p-3 rounded-lg hover:opacity-95'>
           {loading ? 'Loading...' : 'SIGN UP'}
         </button>
       </form>

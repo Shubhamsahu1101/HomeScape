@@ -133,17 +133,17 @@ const Profile = () => {
         <input type="text" onChange={handleChange} id='username' placeholder='username' className='border p-3 rounded-lg' />
         <input type="email" onChange={handleChange} id='email' placeholder='email' className='border p-3 rounded-lg' />
         <input type="password" onChange={handleChange} id='password' placeholder='password' className='border p-3 rounded-lg' />
-        <button type='submit' disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg hover:opacity-95'>{loading ? "Loading..." : "Update"}</button>
+        <button type='submit' disabled={loading} className='bg-stone-700 text-white p-3 rounded-lg hover:opacity-95'>{loading ? "Loading..." : "Update"}</button>
       </form>
 
       <hr className='border-t-2 border-gray-300 my-8' />
 
       <div className='flex gap-4 mt-4'>
-        <Link to='/my-listings' className='bg-green-500 flex flex-1 text-white p-3 rounded-lg hover:opacity-95 justify-center' >
+        <Link to='/my-listings' className='bg-green-600 flex flex-1 text-white p-3 rounded-lg hover:opacity-95 justify-center' >
           <button disabled={loading} >My Listings</button>
         </Link>
-        <button disabled={loading} onClick={handleLogout} className='bg-red-500 flex-1 text-white p-3 rounded-lg hover:opacity-95'>Logout</button>
-        <button disabled={loading} onClick={deleteDialog} className='bg-black flex-1 text-white p-3 rounded-lg hover:opacity-95'>Delete Account</button>
+        <button disabled={loading} onClick={handleLogout} className='bg-red-600 flex-1 text-white p-3 rounded-lg hover:opacity-95'>Logout</button>
+        <button disabled={loading} onClick={deleteDialog} className='bg-stone-800 flex-1 text-white p-3 rounded-lg hover:opacity-95'>Delete Account</button>
       </div>
     </div>
   )

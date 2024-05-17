@@ -14,7 +14,7 @@ export default function ListingItem({ listing }) {
           className='h-[320px] sm:h-[220px] w-full object-cover'
         />
         <div className='p-3 flex flex-col gap-2 w-full'>
-          <p className='truncate text-lg font-semibold text-slate-700'>
+          <p className='truncate text-lg font-semibold text-stone-700'>
             {listing.name}
           </p>
           <div className='flex items-center gap-1'>
@@ -26,12 +26,12 @@ export default function ListingItem({ listing }) {
           <p className='text-sm text-gray-600 line-clamp-2'>
             {listing.description}
           </p>
-          <p className='text-slate-500 mt-2 font-semibold '>
-            $
-            {listing.price.toLocaleString('en-US')}
+          <p className='text-stone-500 mt-2 font-semibold '>
+            {listing.price.toLocaleString('en-IN')}
+            Rs
             {listing.type === 'rent' && ' / month'}
           </p>
-          <div className='text-slate-700 flex gap-4'>
+          <div className='text-stone-700 flex gap-4'>
             <div className='font-bold text-xs'>
               {listing.bedrooms > 1
                 ? `${listing.bedrooms} beds `
