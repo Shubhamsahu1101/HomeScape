@@ -191,7 +191,7 @@ const Profile = () => {
 
       <div className='flex flex-col gap-4 mt-4'>
         <img src={newAvatar ? URL.createObjectURL(newAvatar) : currentUser.avatar} onClick={() => fileRef.current.click()} alt="avatar" className='rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2' />
-        <input type='file' ref={fileRef} onChange={(f) => setNewAvatar(f.target.files[0])} accept='image/*' />
+        <input type='file' ref={fileRef} onChange={(f) => setNewAvatar(f.target.files[0])} hidden accept='image/*' />
       </div>
 
       <hr className='border-t-2 border-gray-300 my-8' />
